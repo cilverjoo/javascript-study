@@ -2,8 +2,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express() //express로 앱 생성
 const port = 5000  //back-server로 5000포트를 둘 것.
-const { User } = require("./models/User")
-const config = require("./config/key")
+const { User } = require('./models/User')
+const config = require('./config/key')
 const cookieParser = require('cookie-parser')
 const { auth } = require('./middleware/auth')
 
@@ -14,7 +14,6 @@ app.use(bodyParser.urlencoded({extended: true}))
 //application/json 분석해서 가져올 수 있게 해 주기 위해서 필요.
 app.use(bodyParser.json())
 app.use(cookieParser())
-
 
 const mongoose = require('mongoose')
 mongoose.connect(config.mongoURI, {
@@ -90,7 +89,7 @@ app.get('/api/users/auth', auth, (req, res) => {
 })
 
 // 로그아웃하려는 유저를 데이터베이스에서 찾아 토큰을 지워준다.
-app.get('api/users/logout', auth, (req, res) => {
+app.get('/api/users/logout', auth, (req, res) => {
 
   User.findOneAndUpdate(
     { _id: req.user._id },
