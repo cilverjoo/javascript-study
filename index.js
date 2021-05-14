@@ -1,12 +1,10 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express() //express로 앱 생성
-const port = 5000  //back-server로 5000포트를 둘 것.
-const { User } = require('./models/User')
-const config = require('./config/key')
+const { User } = require('./server/models/User')
+const config = require('./server/config/key')
 const cookieParser = require('cookie-parser')
-const { auth } = require('./middleware/auth')
-
+const { auth } = require('./server/middleware/auth');
 
 //application/x-www-form-urlencoded 데이터를 분석해서 가져올 수 있게 해 준다.
 app.use(bodyParser.urlencoded({extended: true}))
@@ -23,6 +21,10 @@ mongoose.connect(config.mongoURI, {
 
 app.get('/', (req, res) => {
   res.send('염치 어디 바다 넙치에게 줬는지') //index.js에 보낼 내용
+})
+
+app.get('/api/hello', (req, res) => {
+  res.send('안녕하세요~')
 })
 
 app.post('/api/users/register', (req, res) => {
@@ -99,6 +101,8 @@ app.get('/api/users/logout', auth, (req, res) => {
       return res.status(200).send({ success: true });
     })
 })
+
+const port = 5000  //back-server로 5000포트를 둘 것.
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`) //앱에서 해당 포트로 실행
