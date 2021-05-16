@@ -5,12 +5,13 @@ const { User } = require('./server/models/User')
 const config = require('./server/config/key')
 const cookieParser = require('cookie-parser')
 const { auth } = require('./server/middleware/auth');
+const port = 5000  //back-server로 5000포트를 둘 것.
 
 //application/x-www-form-urlencoded 데이터를 분석해서 가져올 수 있게 해 준다.
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(express.urlencoded({extended: true}))
 
 //application/json 분석해서 가져올 수 있게 해 주기 위해서 필요.
-app.use(bodyParser.json())
+app.use(express.json())
 app.use(cookieParser())
 
 const mongoose = require('mongoose')
@@ -101,8 +102,6 @@ app.get('/api/users/logout', auth, (req, res) => {
       return res.status(200).send({ success: true });
     })
 })
-
-const port = 5000  //back-server로 5000포트를 둘 것.
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`) //앱에서 해당 포트로 실행

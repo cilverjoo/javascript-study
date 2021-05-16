@@ -129,4 +129,5 @@ redux store는 plain object만 받으므로 promise, function을 받는 방법�
 
 import { Provider } from 'react-redux'
 
-combineReducer => state가 어떻게 변하는지 
+
+## 29. Redux hook!!
