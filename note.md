@@ -130,4 +130,13 @@ redux store는 plain object만 받으므로 promise, function을 받는 방법�
 import { Provider } from 'react-redux'
 
 
-## 29. Redux hook!!
+## 33. 인증 체크
+
+- HOC (Higher Order Component)
+ : 컴포넌트를 받아서 새로운 컴포넌트를 리턴하는 컴포넌트. 
+```Javascript
+const EnhanceComponent = higherOrderComponent(WrappedComponent);
+```
+
+상태 -> Auth(HOC) --- request -> Back end
+페이지 이동을 위해 리퀘스트를 보낼 때, back end에서 상태(권한)에 따라서 필터링해준다.
