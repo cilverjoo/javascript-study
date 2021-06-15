@@ -1,11 +1,10 @@
 const express = require('express')
-const bodyParser = require('body-parser')
 const app = express() //express로 앱 생성
 const { User } = require('./server/models/User')
 const config = require('./server/config/key')
 const cookieParser = require('cookie-parser')
 const { auth } = require('./server/middleware/auth');
-const port = 5000  //back-server로 5000포트를 둘 것.
+const port = 5000;  //back-server로 5000포트를 둘 것.
 
 //application/x-www-form-urlencoded 데이터를 분석해서 가져올 수 있게 해 준다.
 app.use(express.urlencoded({extended: true}))
